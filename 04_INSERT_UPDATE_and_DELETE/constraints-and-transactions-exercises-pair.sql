@@ -33,6 +33,7 @@ UPDATE country
 SET capital = (SELECT id FROM city WHERE name = 'Smallville') --selects Smallville's code ? 4081
 WHERE code = 'USA'
 SELECT * FROM country WHERE code = 'USA'
+
 COMMIT
 
 -- 5. Delete Smallville, Kansas from the city table. (Did it succeed? Why?)
@@ -40,17 +41,24 @@ COMMIT
 START TRANSACTION;
 DELETE FROM city WHERE name = 'Smallville'
 ROLLBACK
+select * from city where name = 'Smallville'
 
 --Smallville cannnot be deleted directly from the city table, because it is being used as a US capital 
 --so deleting it would violate referentil integrety. 
 
 -- 6. Return the US capital to Washington.
 START TRANSACTION;
+UPDATE country
+SET capital = (SELECT id FROM city WHERE name = 'Washington') --selects Smallville's code ? 4081
+WHERE code = 'USA'
+SELECT * FROM country WHERE code = 'USA'
 
 ROLLBACK;
 
 -- 7. Delete Smallville, Kansas from the city table. (Did it succeed? Why?)
 START TRANSACTION;
+
+DELETE FROM city WHERE name = 'Smallville' and district = 'Kansas'
 
 ROLLBACK;
 
