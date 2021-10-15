@@ -76,12 +76,21 @@ ROLLBACK;
 -- (4079 rows affected)
 
 START TRANSACTION;
-
-ROLLBACK;
+UPDATE city SET population = (population / 1000);
+SELECT name, population FROM city WHERE name = 'Columbus';
+COMMIT;
 -- 10. Assuming a country's surfacearea is expressed in square miles, convert it to
 -- square meters for all countries where French is spoken by more than 20% of the
 -- population.
 -- (7 rows affected)
 START TRANSACTION;
+UPDATE country SET surfacearea = (surfacearea * (2589988.1103)) 
+WHERE code IN (
+SELECT code, surfacearea FROM country 
+JOIN countrylanguage ON country.code = countrylanguage.countrycode
+WHERE percentage > 20.0 AND language = 'French')
 
-ROLLBACK;
+COMMIT;
+
+
+
