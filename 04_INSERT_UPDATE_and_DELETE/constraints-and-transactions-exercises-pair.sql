@@ -68,8 +68,15 @@ ROLLBACK;
 -- (590 rows affected)
 
 START TRANSACTION;
+UPDATE countrylanguage SET isofficial = NOT isofficial
+FROM country
+WHERE indepyear BETWEEN 1800 AND 1972 AND country.code = countrylanguage.countrycode 
 
-ROLLBACK;
+SELECT isofficial, country.name FROM country JOIN countrylanguage ON country.code = countrylanguage.countrycode
+WHERE indepyear BETWEEN 1800 AND 1972 --AND country.code = countrylanguage.countycode 
+
+
+commit;
 
 -- 9. Convert population so it is expressed in 1,000s for all cities. (Round up to
 -- the nearest integer value.)
