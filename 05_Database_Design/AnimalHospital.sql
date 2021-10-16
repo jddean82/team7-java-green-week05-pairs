@@ -60,5 +60,12 @@ CONSTRAINT fk_PetID FOREIGN KEY(PetID) REFERENCES Pet(PetID)
 
 );
 --------------------------------------------------------------------------------------------------DATA LOAD------------------------------------------
+INSERT INTO Owner(OwnerFirstName, OwnerLastName, OwnerAddress, OwnerCity, OwnerState, OwnerZip) Values('Jeff','Dean','1251 Joyce Lane','Ann Arbor','MI','44444');
+INSERT INTO Owner(OwnerFirstName, OwnerLastName, OwnerAddress, OwnerCity, OwnerState, OwnerZip) Values('Mary','Colapietro','1555 Big Street','Columbus','OH','49044-8979');
+INSERT INTO Owner(OwnerFirstName, OwnerLastName, OwnerAddress, OwnerCity, OwnerState, OwnerZip) Values('Slim','Jim','3 Grand Dr.','Fredrick','TX','22444');
 
+INSERT INTO Pet(OwnerID,PetName, PetType,PetAge) Values(1,'Scratch','Cat',12);
+INSERT INTO Pet(OwnerID,PetName, PetType,PetAge) Values(1,'Henry','Dog',1);
+INSERT INTO Pet(OwnerID,PetName, PetType,PetAge) Values(2,'MrBill','Donkey',12);
+INSERT INTO Pet(OwnerID,PetName, PetType,PetAge) Values(3,'Whiskery','Bird',10);
 
